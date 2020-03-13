@@ -27,10 +27,7 @@ data "aws_iam_policy_document" "s3_policy_cloudtrail" {
     ]
     resources = formatlist(
       "arn:aws:s3:::${var.org_name}-audit-cloudtrail/AWSLogs/%s/*",
-      concat(
-        data.aws_organizations_organization.selected.accounts[*].id,
-        [data.aws_organizations_organization.selected.id]
-      )
+      [var.master_account_id, var.organization_id]
     )
     condition {
       test     = "StringEquals"

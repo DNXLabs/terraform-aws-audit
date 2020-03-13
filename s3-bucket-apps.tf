@@ -1,5 +1,5 @@
 
-data "aws_iam_policy_document" "s3_policy_guardduty" {
+data "aws_iam_policy_document" "s3_policy_apps" {
   statement {
     sid    = "OrgAccounts"
     effect = "Allow"
@@ -11,16 +11,16 @@ data "aws_iam_policy_document" "s3_policy_guardduty" {
       "s3:PutObject"
     ]
     resources = [
-      "arn:aws:s3:::${var.org_name}-audit-guardduty/*"
+      "arn:aws:s3:::${var.org_name}-audit-apps/*"
     ]
   }
 }
 
-resource "aws_s3_bucket" "guardduty" {
-  bucket = "${var.org_name}-audit-guardduty"
+resource "aws_s3_bucket" "apps" {
+  bucket = "${var.org_name}-audit-apps"
   acl    = "private"
 
-  policy = data.aws_iam_policy_document.s3_policy_guardduty.json
+  policy = data.aws_iam_policy_document.s3_policy_apps.json
 
   server_side_encryption_configuration {
     rule {
