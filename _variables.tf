@@ -19,3 +19,13 @@ variable "organization_id" {
 variable "master_account_id" {
   description = "Master account ID"
 }
+
+variable "idp_account_id" {
+  default     = ""
+  description = "Account ID of IDP account (required when create_audit_role=true)"
+}
+
+variable "create_audit_role" {
+  default = true
+  description = "Create a read-only role for accessing audit account"
+}
