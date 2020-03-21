@@ -14,6 +14,21 @@ data "aws_iam_policy_document" "s3_policy_infra" {
       "arn:aws:s3:::${var.org_name}-audit-infra/*"
     ]
   }
+  statement {
+    sid    = "OrgAccountsAcl"
+    effect = "Allow"
+    principals {
+      type        = "AWS"
+      identifiers = formatlist("arn:aws:iam::%s:root", var.account_ids)
+    }
+    actions = [
+      "s3:GetBucketAcl",
+      "s3:PutBucketAcl"
+    ]
+    resources = [
+      "arn:aws:s3:::${var.org_name}-audit-infra"
+    ]
+  }
 }
 
 resource "aws_s3_bucket" "infra" {

@@ -1,6 +1,20 @@
 
 data "aws_iam_policy_document" "s3_policy_apps" {
   statement {
+    sid    = "CWLogs"
+    effect = "Allow"
+    principals {
+      type        = "Service"
+      identifiers = ["logs.amazonaws.com"]
+    }
+    actions = [
+      "s3:PutObject"
+    ]
+    resources = [
+      "arn:aws:s3:::${var.org_name}-audit-apps/*"
+    ]
+  }
+  statement {
     sid    = "OrgAccounts"
     effect = "Allow"
     principals {
@@ -12,6 +26,20 @@ data "aws_iam_policy_document" "s3_policy_apps" {
     ]
     resources = [
       "arn:aws:s3:::${var.org_name}-audit-apps/*"
+    ]
+  }
+  statement {
+    sid    = "CWLogsAcl"
+    effect = "Allow"
+    principals {
+      type        = "Service"
+      identifiers = ["logs.amazonaws.com"]
+    }
+    actions = [
+      "s3:GetBucketAcl"
+    ]
+    resources = [
+      "arn:aws:s3:::${var.org_name}-audit-apps"
     ]
   }
 }
