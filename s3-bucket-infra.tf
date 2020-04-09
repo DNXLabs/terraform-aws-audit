@@ -1,5 +1,7 @@
 
 data "aws_iam_policy_document" "s3_policy_infra" {
+  count = length(var.s3_regions)
+
   statement {
     sid    = "OrgAccounts"
     effect = "Allow"
@@ -11,7 +13,7 @@ data "aws_iam_policy_document" "s3_policy_infra" {
       "s3:PutObject"
     ]
     resources = [
-      "arn:aws:s3:::${var.org_name}-audit-infra/*"
+      "arn:aws:s3:::${var.org_name}-audit-infra-${var.s3_regions[count.index]}/*"
     ]
   }
   statement {
@@ -26,16 +28,18 @@ data "aws_iam_policy_document" "s3_policy_infra" {
       "s3:PutBucketAcl"
     ]
     resources = [
-      "arn:aws:s3:::${var.org_name}-audit-infra"
+      "arn:aws:s3:::${var.org_name}-audit-infra-${var.s3_regions[count.index]}"
     ]
   }
 }
 
 resource "aws_s3_bucket" "infra" {
-  bucket = "${var.org_name}-audit-infra"
-  acl    = "private"
+  count  = length(var.s3_regions)
+  bucket = "${var.org_name}-audit-infra-${var.s3_regions[count.index]}"
 
-  policy = data.aws_iam_policy_document.s3_policy_infra.json
+  acl = "private"
+
+  policy = data.aws_iam_policy_document.s3_policy_infra[count.index].json
 
   server_side_encryption_configuration {
     rule {

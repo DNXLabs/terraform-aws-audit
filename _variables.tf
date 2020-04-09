@@ -26,6 +26,11 @@ variable "idp_account_id" {
 }
 
 variable "create_audit_role" {
-  default = true
+  default     = true
   description = "Create a read-only role for accessing audit account"
+}
+
+variable "s3_regions" {
+  type        = list
+  description = "Regions to deploy apps and infra S3 buckets (if different from provider)"
 }
