@@ -26,17 +26,27 @@ resource "aws_iam_policy" "audit" {
 
   policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-              "s3:Get*",
-              "s3:List*"
-            ],
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:Get*",
+        "s3:List*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:List*",
+        "kms:Get*",
+        "kms:Describe*",
+        "kms:Decrypt"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
 EOF
 }
