@@ -4,6 +4,7 @@
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-audit)](https://github.com/DNXLabs/terraform-aws-audit/blob/master/LICENSE)
 
 <!--- BEGIN_TF_DOCS --->
+
 ## Requirements
 
 | Name | Version |
