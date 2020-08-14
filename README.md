@@ -3,9 +3,9 @@
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-audit/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-audit/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-audit)](https://github.com/DNXLabs/terraform-aws-audit/blob/master/LICENSE)
 
-TThis terraform module creates buckets that save cloudtrail and guardduty logs from all accounts
+This terraform module creates buckets that save cloudtrail and guardduty logs from all accounts.
 
-This modules creates the following resources:
+The following resources will be created:
 
 - IAM roles
 - S3 buckets to save cloudtrail logs
