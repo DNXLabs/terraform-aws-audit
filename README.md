@@ -3,6 +3,21 @@
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-audit/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-audit/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-audit)](https://github.com/DNXLabs/terraform-aws-audit/blob/master/LICENSE)
 
+This terraform module creates buckets that save cloudtrail and guardduty logs from all accounts.
+
+The following resources will be created:
+
+- IAM roles
+- S3 buckets to save cloudtrail logs
+- S3 buckets to save guardduty logs
+
+In addition you have the options to:
+
+ - Set How many days before transitioning files to Glacier.
+   - The default value is 90 days
+ - Create a read-only role for accessing audit account
+
+
 <!--- BEGIN_TF_DOCS --->
 
 ## Requirements
