@@ -24,7 +24,7 @@ In addition you have the options to:
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.20 |
+| terraform | >= 0.12.0 |
 
 ## Providers
 
